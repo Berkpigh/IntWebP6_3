@@ -74,6 +74,7 @@ function createFigures(pwors)  {
             let fic = document.createElement("figcaption");
             ima.src = pwors[w].imageUrl;
             ima.alt = pwors[w].title;
+            ima.crossOrigin = "Anonymous";
             fic.innerHTML  = pwors[w].title;
             fig.appendChild(ima);
             fig.appendChild(fic);
@@ -99,7 +100,7 @@ function initialHomePageCreation(pcats) {
         div.appendChild(anyElem("button",null,bid,"porcatbtn__btn","button",null,null,null,cats[c].name,null,null));
     }
     addListenerCatBtns();
-    getFetchThenMain();
+    getFetchThenMainHomePage();
     console.log("initialHomePageCreation Ok");
 };
 function showSelCatBtn() {
@@ -140,9 +141,14 @@ amod.addEventListener("mouseover", (event) => {
     console.log("testlog modifier: ", testlog);
     if (testlog === true) { window.location.href="login.html"; };
 });
-function main(pwors) {
+function MainHomePage(pwors) {
+    console.log("Début MainHomePage");
     wors = pwors;
-    console.log("wors --- ", wors);
+    main(wors);
+};
+function main(pwors) {
+    console.log("Début Main");
+    console.log("pwors --- ", pwors);
     let b = removeFigures();
     if (b === true) {console.log("removeFigures Ok");
                      b = createFigures(pwors)};
@@ -337,6 +343,7 @@ function createMainModal(pwors)  {
             div.appendChild(bdel);
 // --- image et caption
             let ima = anyElem("img",null,pwors[w].id,"figimg",null,pwors[w].imageUrl,pwors[w].title,null,null,null,null);
+            ima.crossOrigin = "Anonymous";
             let afic = document.createElement("a");
             afic.href = "#figbtn" + w.toString();
             afic.classList.add("figcap");
@@ -416,7 +423,7 @@ const closeModal = function (e) {
         modal = null
     }
     modal.addEventListener('animationend', hideModal)
-    getFetchThenMain();
+    getFetchThenMainHomePage();
 }
 
 const stopPropagation = function (e) {
@@ -464,8 +471,8 @@ window.addEventListener('keydown', function (e) {
 function getFetchThenMainModal() {
     getFetch(`http://localhost:5678/api/works`).then(w => mainModal(w),);
 };
-function getFetchThenMain() {
-    getFetch(`http://localhost:5678/api/works`).then(w => main(w),);
+function getFetchThenMainHomePage() {
+    getFetch(`http://localhost:5678/api/works`).then(w => MainHomePage(w),);
 };
 /* --- --- --- --- --- --- --- --- Fin de la gestion de la fenêtre modale --- --- --- */
 /* ---------------------------------------------------------------------------------- */
