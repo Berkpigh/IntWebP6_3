@@ -9,9 +9,11 @@ const focusableSelector = 'button, a, input, textarea'
 let modgal = document.querySelector(".modal-gallery");
 
 let wors = "";
+let cats = "";
 let token ="";
 let ModNum = 1;
 let modal = null
+let APUrl = "";
 let focusables = []
 let previouslyFocusedElement = null
 
@@ -66,7 +68,7 @@ export function addListenerAPBtn() {
         APUrl = APFil.name;
         apimg.src = URL.createObjectURL(apifi.files[0]);
         swapClass(apilab, "apilab", "apilab-nodis");
-        swapClass(apimg, "apzer", "appho");
+        swapClass(apimg, "apimg-nodis", "appho");
         testFullForm(APUrl,aptinp.value,apbval);
     };
 };
@@ -105,8 +107,12 @@ export function createAjoutPhotoModal(pwork, pcats)  {
 // --- div ajout
 // vvvvvvvvvvvvvvvvv
     let div2 = anyElem("div",null,null,"apdiv",null,null,null,null,null,null,null);
-    let img = anyElem("img",null,null,"apimg",null,"/Backend/images/kyswqmsva7nlkdxhpgl.svg","image?",null,null,null,null);
-    img.classList.add("apzer");
+    let svg = generateSVGAP();
+    svg.classList.add("apzer");
+    div2.appendChild(svg);
+    let img = anyElem("img",null,null,"apimg",null,"","image?",null,null,null,null);
+    img.crossOrigin = "anonymous";
+    img.classList.add("apimg-nodis");
     div2.appendChild(img);
     div2.appendChild(anyElem("label",null,null,"apilab",null,null,null,"apinp","+ Ajouter photo",null,null));
     const ipfi = anyElem("input","image","apinp","apifi","file",null,null,null,null,null,true);
@@ -143,7 +149,7 @@ export function createAjoutPhotoModal(pwork, pcats)  {
 export function addModalBtnsListener() {
     const madd = modal.querySelector(".modal-add");
     madd.addEventListener("click", (event) => {
-        ajoutPhotoModal();
+        getFetch(`http://localhost:5678/api/categories`).then(c => ajoutPhotoModal(c),);
     });
     const mdel = modal.querySelector(".modal-del");
     mdel.addEventListener("click", (event) => {
@@ -236,7 +242,8 @@ export function createMainModal(pwork)  {
     }
 */
 };
-export function ajoutPhotoModal() {
+export function ajoutPhotoModal(pcate) {
+    cats = pcate;
     let b = removeModal();
     if (b === true) {console.log("removeModal Ok");
                      b = createAjoutPhotoModal(wors, cats)};

@@ -35,6 +35,7 @@ export function displayHeaders(phea) {
     }
 };
 export function testFullForm(purl,ptit,pbval) {
+    console.log("Début testFullForm");
     if (purl === null || ptit.length < 4) {
         pbval.disabled = true;
         swapClass(pbval,"porcatbtn__btnsel","apbval_disab")

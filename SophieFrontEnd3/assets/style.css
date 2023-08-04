@@ -493,11 +493,16 @@ footer nav ul {
 	position: absolute;
 	top: 0;
 }
+.apimg-nodis {
+	display: none;
+}
 .appho {
 	position: absolute;
 	top: 0;	width: 420px;
 	height: 169px;
+	display: inline;
 	object-fit: contain;
+	z-index: 1;
 }
 .apzer {
 	position: absolute;
