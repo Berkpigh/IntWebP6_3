@@ -44,19 +44,11 @@ export function testFullForm(purl,ptit,pbval) {
     };
     console.log(pbval);
 };
-export function addClass(pelem, classarray) {
-    for (let c = 0; c < classarray.length; c++) {
-        pelem.classList.add(classarray[c]);
-    }
-}
-
-
 export function swapClass(pelem, prem, padd) {
     pelem.classList.remove(prem);
     pelem.classList.add(padd);
     return;
-}
-
+};
 export function generateSVGMove(pclass) {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");

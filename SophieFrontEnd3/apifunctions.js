@@ -100,7 +100,7 @@ export async function addWork(purl, pcont, pbod, ptoken) {
         const res = await fetch(purl, settingObj);
         console.log("loginFetch res", res.status);
         if (res.status === 201) {
-            alert('image correctement ajoutée');
+            alert("image correctement ajoutée");
         } else {
             alert(res.status);
             throw new Error(res.status);

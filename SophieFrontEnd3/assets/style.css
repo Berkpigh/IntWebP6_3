@@ -2,9 +2,9 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
+/*
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1, h2, h3, h4, h5, h6,  blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -23,6 +23,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+*/
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -53,20 +54,60 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
+	max-width: 1440px;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
 header {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
-	margin: 50px 0
+	align-items: center;
 }
 section {
 	margin: 50px 0
 }
-
+.adminbar {
+	width: 1440px;
+	height: 59px;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.adminbar-nodis {
+	display: none;
+}
+.adminbar-dis {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+.pmod {
+	font-weight: 400;
+	font-size: 16px;
+	color: rgba(255, 255, 255, 1);
+	margin-left: 20px;
+}
+.epub {
+	width: 216px;
+	height: 38px;
+	border-radius: 60px;
+	background-color: rgba(255, 255, 255, 1);
+	margin-left: 20px;
+}
+.ppub {
+	width: 216px;
+	height: 16px;
+	color: rgba(0, 0, 0, 1);
+	text-align: center;
+}
+.navhead {
+	width: 1140px;
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 0
+}
 h1{
 	display: flex;
 	flex-direction: column;
@@ -108,7 +149,13 @@ li:hover {
 .navdisabled {
 	pointer-events: none;
 }
+#main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 #introduction {
+	width: 935px;
 	display: flex;
 	align-items: center;
 }
@@ -129,14 +176,20 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
-#portfolio h2 {
+#portofolio {
+	width: 935px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#portofolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 #mesprojets {
 	display: flex;
 	justify-content:center;
 	align-items: center;
+	margin-bottom: 2em;
 }
 .modifier {
 	margin: 0 0 0 30px;
@@ -148,7 +201,7 @@ li:hover {
 	display: inline;
 }
 .porcatbtn {
-	margin: 1em 0 1.5em 350px;
+	margin: 1em 1.5em;
 	height: 37px;
 }
 .c0 {
@@ -185,6 +238,10 @@ li:hover {
 }
 .gallery img {
 	width: 100%;
+}
+.homefig {
+	margin-block: 0;
+	margin-inline: 0;
 }
 #contact {
 	width: 50%;
@@ -369,12 +426,19 @@ footer nav ul {
  	grid-template-columns: 18% 18% 18% 18% 18%;
 	grid-template-rows: 30% 30% 30%;
  */	
- 	grid-column-gap: 8.925px;
+ 	/*grid-column-gap: 8.925px;*/
 	grid-row-gap: 35px;
 }
-.modal-gallery img {
-	width: 100%;
+
+.figimg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	idth: 76.86px;
+	height: 102.57px;
+	object-fit: cover;
 }
+
 .modal[aria-hidden="true"] {
     animation-name: fadeOut; 
     /* animation-direction: reverse; */
@@ -385,21 +449,21 @@ footer nav ul {
 }
 .figs {
 	position: relative;
-}
-.figimg {
-	position: absolute;
-	top: 0;
-	left: 0;
+	margin-block: 0;
+	margin-inline: 0;
 }
 .figbtns {
 	position: absolute;
 	top: 8px;
-	right: 6px;
+	left: 40px;
+	width: 40px;
 	z-index: 1;
+	display: flex;
+	justify-content: center;
 }
 .figsvg {
 	border-radius: 2px 2px;
-	margin-left: 5px;
+	margin-left: 15px;
 }
 .figdelbtn {
 	box-sizing: unset;
