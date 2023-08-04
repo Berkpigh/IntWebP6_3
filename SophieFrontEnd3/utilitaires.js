@@ -37,14 +37,16 @@ export function displayHeaders(phea) {
 export function testFullForm(papfil,ptit,pbval,ppmes) {
     console.log("Début testFullForm", papfil);
     let mes = "";
-    if (papfil == null || papfil === "undefined") { mes = " - Choisir une image"};
-    if (ptit.length < 4) { mes = mes + " - Indiquer un titre d'au moins 4 caractères"};
+    if (papfil == null || papfil === "undefined") { mes = "- Choisir une image"};
+    if (ptit.length < 4) { mes = mes + "<br>- Indiquer un titre d'au moins 4 caractères"};
     if (!(mes === "")) {
         pbval.disabled = true;
         swapClass(pbval,"porcatbtn__btnsel","apbval_disab")
+        swapClass(ppmes,"pmes","pmesred");
     } else {
         pbval.removeAttribute("disabled");
         swapClass(pbval,"apbval_disab","porcatbtn__btnsel")
+        swapClass(ppmes,"pmesred","pmes");
     };
     ppmes.innerHTML = mes;
 };

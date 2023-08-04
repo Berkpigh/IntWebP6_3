@@ -62,7 +62,7 @@ export function addListenerAPBtn() {
     const apilab = modal.querySelector(".apilab");
     const aptinp = modal.querySelector(".aptinp");
     const apbval = modal.querySelector(".apbval");
-    const pmes = modal.querySelector("#pmes");
+    const pmes = modal.querySelector(".pmes");
     apifi.onchange = function() {
         const APFil = apifi.files[0];
         apimg.src = URL.createObjectURL(apifi.files[0]);
@@ -75,7 +75,7 @@ export function addListenerTitleInput() {
     const apifi = modal.querySelector(".apifi");
     const aptinp = modal.querySelector(".aptinp");
     const apbval = modal.querySelector(".apbval");
-    const pmes = modal.querySelector("#pmes");
+    const pmes = modal.querySelector(".pmes");
     aptinp.onchange = function() {
         const APFil = apifi.files[0];
         const mes = testFullForm(APFil,aptinp.value,apbval,pmes);
@@ -141,7 +141,10 @@ export function createAjoutPhotoModal(pwork, pcats)  {
     modgal.appendChild(anyElem("input",null,null,null,"hidden",null,null,null,null,19,null));
     modgal.appendChild(anyElem("input",null,null,null,"hidden",null,null,null,null,1,null));
     modgal.appendChild(generateSVGLine("modal-svg"));
-    modgal.appendChild(anyElem("p",null,"pmes",null,null,null,null,null,null,null,null));
+    const mes = `- Choisir une image<br>- Indiquer un titre d'au moins 4 caractères`;
+    const pmes = anyElem("p",null,null,"pmes",null,null,null,null,mes,null,null);
+    pmes.classList.add("pmesred");
+    modgal.appendChild(pmes);
     let apbval = anyElem("button",null,null,"apbval","submit",null,null,null,"Valider",null,null);
     apbval.classList.add("apbval_disab");
     apbval.disabled = true;

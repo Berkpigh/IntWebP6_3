@@ -578,8 +578,11 @@ footer nav ul {
 	background: grey;
 	padding: 10px;
 }
-#pmes {
+.pmesred {
 	color: red;
+}
+.pmes {
+	color: black;
 }
 @keyframes fadeIn {
     from { opacity: 0; }
