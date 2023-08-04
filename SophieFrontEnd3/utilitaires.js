@@ -34,16 +34,19 @@ export function displayHeaders(phea) {
         console.log(`${pair[0]}: ${pair[1]}`);      
     }
 };
-export function testFullForm(purl,ptit,pbval) {
-    console.log("Début testFullForm");
-    if (purl === null || ptit.length < 4) {
+export function testFullForm(papfil,ptit,pbval,ppmes) {
+    console.log("Début testFullForm", papfil);
+    let mes = "";
+    if (papfil == null || papfil === "undefined") { mes = " - Choisir une image"};
+    if (ptit.length < 4) { mes = mes + " - Indiquer un titre d'au moins 4 caractères"};
+    if (!(mes === "")) {
         pbval.disabled = true;
         swapClass(pbval,"porcatbtn__btnsel","apbval_disab")
     } else {
         pbval.removeAttribute("disabled");
         swapClass(pbval,"apbval_disab","porcatbtn__btnsel")
     };
-    console.log(pbval);
+    ppmes.innerHTML = mes;
 };
 export function swapClass(pelem, prem, padd) {
     pelem.classList.remove(prem);

@@ -13,7 +13,6 @@ let cats = "";
 let token ="";
 let ModNum = 1;
 let modal = null
-let APUrl = "";
 let focusables = []
 let previouslyFocusedElement = null
 
@@ -63,14 +62,24 @@ export function addListenerAPBtn() {
     const apilab = modal.querySelector(".apilab");
     const aptinp = modal.querySelector(".aptinp");
     const apbval = modal.querySelector(".apbval");
+    const pmes = modal.querySelector("#pmes");
     apifi.onchange = function() {
         const APFil = apifi.files[0];
-        APUrl = APFil.name;
         apimg.src = URL.createObjectURL(apifi.files[0]);
         swapClass(apilab, "apilab", "apilab-nodis");
         swapClass(apimg, "apimg-nodis", "appho");
-        testFullForm(APUrl,aptinp.value,apbval);
+        const mes = testFullForm(APFil,aptinp.value,apbval,pmes);
     };
+};
+export function addListenerTitleInput() {
+    const apifi = modal.querySelector(".apifi");
+    const aptinp = modal.querySelector(".aptinp");
+    const apbval = modal.querySelector(".apbval");
+    const pmes = modal.querySelector("#pmes");
+    aptinp.onchange = function() {
+        const APFil = apifi.files[0];
+        const mes = testFullForm(APFil,aptinp.value,apbval,pmes);
+    }
 };
 export function addListenerValBtn() {
     const apifi = modal.querySelector(".apifi");
@@ -96,7 +105,6 @@ export function addListenerValBtn() {
 export function createAjoutPhotoModal(pwork, pcats)  {
     console.log("Début createAjoutPhotoModal");
     ModNum = 2;
-    APUrl = null;
     const bback = modal.querySelector(".js-modal-back");
     swapClass(bback, "js-modal-back-nodis", "js-modal-back-dis");
     const modtit = modal.querySelector(".modal-title");
@@ -123,7 +131,7 @@ export function createAjoutPhotoModal(pwork, pcats)  {
 // ^^^^^^^^^^^^^^^^^    
     modgal.appendChild(div2);
     modgal.appendChild(anyElem("label",null,null,"aptlab",null,null,null,"aptinp","Titre",null,null));
-    modgal.appendChild(anyElem("input","title","aptinp","aptinp","text",null,null,null,null,"indiquer un titre",null));
+    modgal.appendChild(anyElem("input","title","aptinp","aptinp","text",null,null,null,null,null,null));
     modgal.appendChild(anyElem("label",null,null,"apllab",null,null,null,"aplist","Catégorie",null,null));
     let aplist = anyElem("select","category","aplist","aplinp",null,null,null,null,null,null,null);
     for (let c = 0; c < pcats.length; c++) {
@@ -133,6 +141,7 @@ export function createAjoutPhotoModal(pwork, pcats)  {
     modgal.appendChild(anyElem("input",null,null,null,"hidden",null,null,null,null,19,null));
     modgal.appendChild(anyElem("input",null,null,null,"hidden",null,null,null,null,1,null));
     modgal.appendChild(generateSVGLine("modal-svg"));
+    modgal.appendChild(anyElem("p",null,"pmes",null,null,null,null,null,null,null,null));
     let apbval = anyElem("button",null,null,"apbval","submit",null,null,null,"Valider",null,null);
     apbval.classList.add("apbval_disab");
     apbval.disabled = true;
@@ -143,6 +152,7 @@ export function createAjoutPhotoModal(pwork, pcats)  {
     swapClass(modcontent, "modal-modal", "modal-APmodal");
     modcontent.appendChild(modgal);
     addListenerAPBtn();
+    addListenerTitleInput();
     addListenerValBtn();
     return true;
 };
