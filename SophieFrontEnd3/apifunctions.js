@@ -1,6 +1,8 @@
-import { lo, displayFormData, displayObject, displayHeaders }  from "./utilitaires.js";
+import { displayObject, displayHeaders }  from "./utilitaires.js";
 const resp = document.getElementById("presult");
 
+// --- construction de le l'objet Headers en fonction
+// --- du content-type et de l'authorization 
 function constructHeaders(pcont, ptoken){
     console.log("Début constructHeaders");
     let hea = new Headers();
@@ -23,6 +25,7 @@ function constructHeaders(pcont, ptoken){
     displayHeaders(hea);
     return hea;
 };
+// --- construction du 2ème paramètre de l'instruction fetch
 function constructRequestOptions(pfun, phea, pbod) {
     console.log("Début constructRequest");
     let settingObj = new Object();
@@ -44,6 +47,7 @@ function constructRequestOptions(pfun, phea, pbod) {
     displayObject(settingObj);
     return settingObj;
 };
+// --- enregistrement des infos de login dans la local storage
 export function storeResult(plogresult) {
     const locsto = {
         userid: plogresult.userId,
@@ -53,13 +57,14 @@ export function storeResult(plogresult) {
     const loginfo = JSON.stringify(locsto);
     window.localStorage.setItem("loginfo", loginfo);
 };
-/* ---  Récupération des données provenant du back-end --- */
+// --- GET fetch API
+// ---  Récupération des données provenant du back-end
 export async function getFetch(purl) {
     const response = await fetch(purl);
     const respjson = await response.json();
     return respjson;
 };
-
+// --- login fetch API
 export async function loginFetch(purl, pcont, pbod, ptoken) {
     console.log("Début loginFetch");
     console.log("url", purl);
@@ -80,6 +85,7 @@ export async function loginFetch(purl, pcont, pbod, ptoken) {
         console.log(error.message);
     };
 };
+// --- delete fetch API
 export async function deleteWork(pworkid, pcont, ptoken) {
     console.log("Début deleteWork");
     const urls = "http://localhost:5678/api/works/" + pworkid;
@@ -92,6 +98,7 @@ export async function deleteWork(pworkid, pcont, ptoken) {
         console.log(error.message);
     };
 };
+// --- add projet fetch API
 export async function addWork(purl, pcont, pbod, ptoken) {
     console.log("Début addWork");
     const headersObj = constructHeaders(pcont, ptoken);
