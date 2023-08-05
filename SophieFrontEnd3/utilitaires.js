@@ -34,10 +34,11 @@ export function displayHeaders(phea) {
         console.log(`${pair[0]}: ${pair[1]}`);      
     }
 };
-export function testFullForm(papfil,ptit,pbval,ppmes) {
+export function testFullForm(pmes, papfil,ptit,pbval,ppmes) {
     console.log("Début testFullForm", papfil);
-    let mes = "";
-    if (papfil == null || papfil === "undefined") { mes = "- Choisir une image"};
+    let mes = pmes;
+    pmes = "";
+    if (papfil == null || papfil === "undefined") { mes = mes + "- Choisir une image"};
     if (ptit.length < 4) { mes = mes + "<br>- Indiquer un titre d'au moins 4 caractères"};
     if (!(mes === "")) {
         pbval.disabled = true;

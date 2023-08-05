@@ -22,7 +22,6 @@ document.querySelector(".js-modal-back").addEventListener("click", (event) => {
 let token = "";
 let wors = "";
 let cats = "";
-let cmax = 0;
 let curcat = "0";
 let precat = "";
 let testlog = false;
@@ -111,11 +110,10 @@ function initialHomePageCreation(pcats) {
         swapClass(admb, "adminbar-dis", "adminbar-nodis");
         cats = pcats;
         console.log("pcats --- ", cats);
-        cmax = cats.length -1;
         let div = anyElem("div",null,null,"porcatbtn",null,null,null,null,null,null,null);
         por.appendChild(div);
         div.appendChild(anyElem("button",null,"0","porcatbtn__btnsel","button",null,null,null,"Tous",null,null));
-        for (let c = 0; c <= cmax; c++) {
+        for (let c = 0; c < cats.length; c++) {
             let bid = (c + 1).toString();
             div.appendChild(anyElem("button",null,bid,"porcatbtn__btn","button",null,null,null,cats[c].name,null,null));
         }

@@ -8,6 +8,7 @@ import { getFetch, deleteWork, addWork } from "./apifunctions.js";
 const focusableSelector = 'button, a, input, textarea'
 let modgal = document.querySelector(".modal-gallery");
 
+const sizemax = 1000000;
 let wors = "";
 let cats = "";
 let token ="";
@@ -63,12 +64,22 @@ export function addListenerAPBtn() {
     const aptinp = modal.querySelector(".aptinp");
     const apbval = modal.querySelector(".apbval");
     const pmes = modal.querySelector(".pmes");
+    let mes = "";
     apifi.onchange = function() {
-        const APFil = apifi.files[0];
-        apimg.src = URL.createObjectURL(apifi.files[0]);
-        swapClass(apilab, "apilab", "apilab-nodis");
-        swapClass(apimg, "apimg-nodis", "appho");
-        const mes = testFullForm(APFil,aptinp.value,apbval,pmes);
+        let APFil = apifi.files[0];
+        if (APFil.size > sizemax)  {
+            console.log("img size : ", APFil.size, " - ", sizemax);
+            mes = "- La taille de l'image est supérieure à la limite<br>"
+            APFil = null;
+            apifi.value = null;
+        } else {
+            mes = "";
+            apimg.src = URL.createObjectURL(apifi.files[0]);
+            swapClass(apilab, "apilab", "apilab-nodis");
+            swapClass(apimg, "apimg-nodis", "appho");
+        }
+        testFullForm(mes,APFil,aptinp.value,apbval,pmes);
+        mes = "";
     };
 };
 export function addListenerTitleInput() {
@@ -78,7 +89,7 @@ export function addListenerTitleInput() {
     const pmes = modal.querySelector(".pmes");
     aptinp.onchange = function() {
         const APFil = apifi.files[0];
-        const mes = testFullForm(APFil,aptinp.value,apbval,pmes);
+        testFullForm("",APFil,aptinp.value,apbval,pmes);
     }
 };
 export function addListenerValBtn() {
@@ -126,7 +137,8 @@ export function createAjoutPhotoModal(pwork, pcats)  {
     const ipfi = anyElem("input","image","apinp","apifi","file",null,null,null,null,null,true);
     ipfi.setAttribute("accept", "image/jpg, image/png");
     div2.appendChild(ipfi);
-    div2.appendChild(anyElem("p",null,null,"appar",null,null,null,null,"jpg, png : 4mo max",null,null));
+    let txt = "jpg, png : " + (sizemax/1000000).toString() + "mo max";
+    div2.appendChild(anyElem("p",null,null,"appar",null,null,null,null,txt,null,null));
 // --- Fin div ajout
 // ^^^^^^^^^^^^^^^^^    
     modgal.appendChild(div2);
