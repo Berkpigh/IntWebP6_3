@@ -18,6 +18,7 @@ let focusables = []
 let previouslyFocusedElement = null
 
 function getFetchThenMainModal() {
+    console.log("Début getFetchThenMainModal");
     getFetch(`http://localhost:5678/api/works`).then(w => showMainModal(w),);
 };
 function getLocalStorage() {
@@ -109,12 +110,12 @@ export function addListenerValBtn() {
         fd.append("image", apifi.files[0], fname)
         displayFormData(fd);
         let urls = "http://localhost:5678/api/works";
-        addWork(urls, "formauth", fd, token);
-        getFetchThenMainModal();
+        addWork(urls, "formauth", fd, token).then(() => getFetchThenMainModal());
+        //getFetchThenMainModal();
     });
 };
-export function createAjoutPhotoModal(pwork, pcats)  {
-    console.log("Début createAjoutPhotoModal");
+export function createAPhotoModal(pwork, pcats)  {
+    console.log("Début createAPhotoModal");
     ModNum = 2;
     const bback = modal.querySelector(".js-modal-back");
     swapClass(bback, "js-modal-back-nodis", "js-modal-back-dis");
@@ -268,13 +269,15 @@ export function createMainModal(pwork)  {
 */
 };
 export function ajoutPhotoModal(pcate) {
+    console.log("Début ajoutPhotoModal");
     cats = pcate;
     let b = removeModal();
     if (b === true) {console.log("removeModal Ok");
-                     b = createAjoutPhotoModal(wors, cats)};
-    if (b === true) {console.log("createAjoutPhotoModal Ok")};
+                     b = createAPhotoModal(wors, cats)};
+    if (b === true) {console.log("createAPhotoModal Ok")};
 }
 export function showMainModal(pwork) {
+    console.log("Début showMainModal");
     wors = pwork;
     let b = removeModal();
     if (b === true) {console.log("removeModal Ok");

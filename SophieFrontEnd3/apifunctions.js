@@ -98,9 +98,10 @@ export async function addWork(purl, pcont, pbod, ptoken) {
     const settingObj = constructRequestOptions("add", headersObj, pbod);
     try {
         const res = await fetch(purl, settingObj);
-        console.log("loginFetch res", res.status);
+        console.log("addFetch res", res.status);
         if (res.status === 201) {
             console.log("image correctement ajoutée");
+            //console.log("addWork response : ",res);
         } else {
             alert(res.status);
             throw new Error(res.status);

@@ -1,7 +1,7 @@
 import { anyElem, swapClass, displayFormData, testFullForm, lo,
     generateSVGMove, generateSVGDel, generateSVGLine, generateSVGAP  } from "./utilitaires.js";
 import { removeModal, removeMainModal, removeAPModal, addListenerAPBtn, 
-    addListenerValBtn, createAjoutPhotoModal, addModalBtnsListener, 
+    addListenerValBtn, createAPhotoModal, addModalBtnsListener, 
     createModalBtns, addListenerDelBtns, createMainModal, 
     ajoutPhotoModal, showMainModal, openModal, closeModal } from "./modales.js";
 import { getFetch } from "./apifunctions.js";
