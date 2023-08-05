@@ -11,7 +11,6 @@ let gal = document.querySelector(".gallery");
 let alog = document.getElementById("alog");
 let admb = document.querySelector(".adminbar");
 let modifier = document.querySelector(".modifier");
-let outbtn = document.getElementById("outbtn");
 document.querySelector(".js-modal").addEventListener('click', (e) => {
     openModal(e, wors);
 });
@@ -26,18 +25,26 @@ let curcat = "0";
 let precat = "";
 let testlog = false;
 
-outbtn.addEventListener("click", (e) => {
-    window.localStorage.removeItem("loginfo");
+alog.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (e.target.innerHTML === "login") {
+        window.location.href="login.html";
+    } else {
+        window.localStorage.removeItem("loginfo");
+        testlog = false;
+        swapModifier(-1);
+        getFetch(`http://localhost:5678/api/categories`).then(c => initialHomePageCreation(c),);
+    }
 });
 
 function swapModifier(pswap) {
     console.log("Début swapModifier : ", pswap)
     if (pswap > 0) {
-        swapClass(alog,"navenabled","navdisabled");
+        //swapClass(alog,"navenabled","navdisabled");
         swapClass(modifier, "modinvisible", "modvisible");
         alog.innerHTML = "logout";
     } else {
-        swapClass(alog,"navdisabled", "navenabled");
+        //swapClass(alog,"navdisabled", "navenabled");
         swapClass(modifier, "modvisible", "modinvisible");
         alog.innerHTML = "login";
     }
