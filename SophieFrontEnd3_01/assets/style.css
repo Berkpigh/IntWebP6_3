@@ -59,7 +59,7 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
-#homeheader {
+header {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -288,11 +288,6 @@ footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
-}
-#loginheader {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 }
 #login {
 	margin: 50px 35% 0 35%;
